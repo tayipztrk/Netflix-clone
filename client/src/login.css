@@ -1,0 +1,69 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+.container{
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper{
+  width: 100%;
+  height: 80vh;
+  background-image: url("../img/netflix-bg.jpg"), linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, #000000 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.header{
+  font-size: 50px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  font-weight: 600;
+}
+
+.desc{
+  font-size: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.navbar{
+  height: 80px;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo{
+  
+}
+
+.logo img{
+  width: 160px;
+  height: auto;
+}
+
+.btn-login{
+  cursor: pointer;
+  padding: 12px 25px;
+  background-color: red;
+  font-size: 15px;
+  font-weight: 400;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  margin-right: 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  outline: none;
+}
