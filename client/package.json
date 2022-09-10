@@ -1,6 +1,6 @@
 {
-  "name": "kargo",
-  "productName": "kargo",
+  "name": "netflix",
+  "productName": "netflix",
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": "src/index.js",
@@ -24,7 +24,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "kargo"
+            "name": "netflix"
           }
         },
         {
@@ -45,6 +45,7 @@
     }
   },
   "dependencies": {
+    "electron-fetch": "^1.7.4",
     "electron-reload": "^2.0.0-alpha.1",
     "electron-squirrel-startup": "^1.0.0",
     "jquery": "^3.6.0"

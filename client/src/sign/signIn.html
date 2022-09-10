@@ -4,26 +4,52 @@
   <div class="navbar">
     <!-- <i class="fa fa-arrow-right"></i> -->
     <div class="logo">
-      
       <img src="../../img/logo.png" alt="" />
     </div>
-    
   </div>
 
   <div class="wrapper">
-   
-  <form>
-    <div class="form-wrapper" >
-    
-      <input class="input" type="text" placeholder="Email" name="email" required />
+    <form action="#" method="POST">
+      <div class="form-wrapper">
+        <input
+          class="input email"
+          type="text"
+          placeholder="Email"
+          name="email"
+          required
+        />
 
-      <input class="input" type="password" placeholder="Password" name="psw" required />
+        <input
+          class="input password"
+          type="password"
+          placeholder="Password"
+          name="psw"
+          required
+        />
 
-      <div class="clearfix">
-        <button type="submit" class="signInbtn">Sign In</button>
+        <div class="clearfix">
+          <button type="submit" class="signInbtn">Sign In</button>
+        </div>
       </div>
-    </div>
-  </form>
-  <a class="createAccount" href="./signUp.html">Create an Account</a>
-</div>
+    </form>
+    <a class="createAccount" href="./signUp.html">Create an Account</a>
+  </div>
+
+  <script>
+    const fetch = require( 'electron-fetch' ).default
+    const { ipcRenderer } = require("electron");
+
+    var submitBtn = document.querySelector("button");
+    var email = document.querySelector(".email");
+    var password = document.querySelector(".password");
+
+    submitBtn.addEventListener("click", (event) => {
+      event.preventDefault();
+      alert();
+      fetch("https://randomuser.me/api/")
+        .then((res) => res.text())
+        .then((body) => alert(body));
+      ipcRenderer.send("authenticated");
+    });
+  </script>
 </html>
