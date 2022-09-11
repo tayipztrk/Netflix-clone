@@ -1,0 +1,15 @@
+C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Repository\bin\Debug\net6.0\netflix.Repository.deps.json
+C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Repository\bin\Debug\net6.0\netflix.Repository.dll
+C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Repository\bin\Debug\net6.0\netflix.Repository.pdb
+C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Repository\bin\Debug\net6.0\netflix.Core.dll
+C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Repository\bin\Debug\net6.0\netflix.Core.pdb
+C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Repository\obj\Debug\net6.0\netflix.Repository.csproj.AssemblyReference.cache
+C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Repository\obj\Debug\net6.0\netflix.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Repository\obj\Debug\net6.0\netflix.Repository.AssemblyInfoInputs.cache
+C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Repository\obj\Debug\net6.0\netflix.Repository.AssemblyInfo.cs
+C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Repository\obj\Debug\net6.0\netflix.Repository.csproj.CoreCompileInputs.cache
+C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Repository\obj\Debug\net6.0\netflix.Repository.csproj.CopyComplete
+C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Repository\obj\Debug\net6.0\netflix.Repository.dll
+C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Repository\obj\Debug\net6.0\refint\netflix.Repository.dll
+C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Repository\obj\Debug\net6.0\netflix.Repository.pdb
+C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Repository\obj\Debug\net6.0\ref\netflix.Repository.dll

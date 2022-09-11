@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "8V1cyX3p1eys8geqlRvTvxTYJMUi8hmT8ZVqTOBsSNg=",
+  "Source": "netflix.App",
+  "BasePath": "_content/netflix.App",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
