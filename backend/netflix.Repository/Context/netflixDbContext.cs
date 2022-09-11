@@ -15,7 +15,7 @@ namespace netflix.Repository.Context
         public DbSet<UserInterest> UserInterests { get; set; }
         public DbSet<Program> Programs { get; set; }
         public DbSet<ProgramInterest> ProgramInterests { get; set; }
-
+        public DbSet<UserProgram> UserPrograms { get; set; }
         public netflixDbContext(DbContextOptions<netflixDbContext> options)
          : base(options)
         {
