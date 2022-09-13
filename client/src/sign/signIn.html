@@ -35,21 +35,22 @@
     <a class="createAccount" href="./signUp.html">Create an Account</a>
   </div>
 
-  <script>
-    const fetch = require( 'electron-fetch' ).default
+  <script>  
+
     const { ipcRenderer } = require("electron");
 
     var submitBtn = document.querySelector("button");
-    var email = document.querySelector(".email");
-    var password = document.querySelector(".password");
 
-    submitBtn.addEventListener("click", (event) => {
-      event.preventDefault();
-      alert();
-      fetch("https://randomuser.me/api/")
-        .then((res) => res.text())
-        .then((body) => alert(body));
-      ipcRenderer.send("authenticated");
+    submitBtn.addEventListener("click", async (event) => {
+      var emails = document.querySelector(".email").value;
+      var passwords = document.querySelector(".password").value;
+      // event.preventDefault();
+      const data = {
+        email: emails,
+        password: passwords,
+      };
+      
+      ipcRenderer.send("userlogin", JSON.stringify(data));
     });
   </script>
 </html>

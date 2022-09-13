@@ -3,11 +3,12 @@ const electron = require("electron");
 const { app, BrowserWindow,ipcMain } = electron;
 
 const electronReload = require('electron-reload')
+const fetch = require("electron-fetch").default;
 
 const path=require('path')
 const url=require('url')
 
-
+let user;
 let win 
 let login
 let signup
@@ -22,6 +23,60 @@ function createWindows() {
     win.loadURL(`file://${__dirname}/login.html`)
   
 }
+ipcMain.on("userlogin", (event, data) => {
+  console.log(data)
+      fetch('https://localhost:7179/User/Login', {
+        method: "POST",
+        body: data,
+        headers: { 'Content-Type': 'application/json' },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("succes:",data);
+          win.loadURL(`file://${__dirname}/index.html`)
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+});
+
+ipcMain.on("usersignup", (event, data) => {
+  console.log(data)
+      fetch('https://localhost:7179/User/Register', {
+        method: "POST",
+        body: data,
+        headers: { 'Content-Type': 'application/json' },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("succes:",data);
+          user = data;
+          win.loadURL(`file://${__dirname}/chooseContent.html`)
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+});
+
+ipcMain.on("userInterest", (event, data) => {
+      dataLast = {
+        interestId: data,
+        userId: user.id
+      }
+      fetch('https://localhost:7179/User/Interest', {
+        method: "POST",
+        body: JSON.stringify(dataLast),
+        headers: { 'Content-Type': 'application/json' },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("succes:",data);
+          win.loadURL(`file://${__dirname}/index.html`)
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+});
 
 ipcMain.on("authenticated", async (event) => {
         // win.show()

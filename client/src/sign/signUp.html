@@ -1,26 +1,53 @@
-
 <html>
-    <link rel="stylesheet" href="sign.css" />
-  
-    <div class="navbar">
-        
-      <div class="logo">
-        <!-- <i class="fa fa-arrow-right"></i> -->
-        <img src="../../img/logo.png" alt="" />
-      </div>
-      
+  <link rel="stylesheet" href="sign.css" />
+
+  <div class="navbar">
+    <div class="logo">
+      <!-- <i class="fa fa-arrow-right"></i> -->
+      <img src="../../img/logo.png" alt="" />
     </div>
-  
-    <div class="wrapper">
-     
+  </div>
+
+  <div class="wrapper">
     <form>
-      <div class="form-wrapper" >
-      
-        <input class="input" type="text" placeholder="Email" name="email" required />
-  
-        <input class="input" type="password" placeholder="Password" name="psw" required />
-  
-        <input class="input" type="password" placeholder="Confirm Password" name="psw" required />
+      <div class="form-wrapper">
+        <input
+        class="input username"
+        type="text"
+        placeholder="User Name"
+        name="username"
+        required
+      />
+        <input
+          class="input email"
+          type="text"
+          placeholder="Email"
+          name="email"
+          required
+        />
+
+        <input
+          class="input password"
+          type="password"
+          placeholder="Password"
+          name="psw"
+          required
+        />
+
+        <input
+          class="input repassword"
+          type="password"
+          placeholder="Confirm Password"
+          name="psw"
+          required
+        />
+        <input
+        class="input birthday"
+        type="date"
+        placeholder="Birthday"
+        name="psw"
+        required
+      />
 
         <div class="clearfix">
           <button type="submit" class="signInbtn">Sign Up</button>
@@ -28,5 +55,28 @@
       </div>
     </form>
   </div>
-  </html>
-  
+
+  <script>
+    const { ipcRenderer } = require("electron");
+
+    var submitBtn = document.querySelector("button");
+
+    submitBtn.addEventListener("click", async (event) => {
+      var username = document.querySelector(".username").value;
+      var passwords = document.querySelector(".password").value;
+      var emails = document.querySelector(".email").value;
+      var repasswords = document.querySelector(".repassword").value;
+      var birthday = document.querySelector(".birthday").value;
+      // event.preventDefault();
+      const data = {
+        userName: username,
+        email: emails,
+        password: passwords,
+        rePassword: repasswords,
+        birthday: birthday
+      };
+
+      ipcRenderer.send("usersignup", JSON.stringify(data));
+    });
+  </script>
+</html>
