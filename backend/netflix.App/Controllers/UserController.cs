@@ -47,6 +47,14 @@ namespace netflix.App.Controllers
             return !result.Succeeded ? BadRequest(result.ErrorDefination) : Ok(result.Data);
         }
 
+
+        [HttpPost("Watch")]
+        public async Task<IActionResult> Watch(WatchAddDto watchDto)
+        {
+            var result = await _userService.Watch(watchDto);
+            return !result.Succeeded ? BadRequest(result.ErrorDefination) : Ok(result.Data);
+        }
+
         [HttpGet("Program")]
         public async Task<IActionResult> Programs()
         {

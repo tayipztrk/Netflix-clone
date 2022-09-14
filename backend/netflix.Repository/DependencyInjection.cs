@@ -38,6 +38,7 @@ namespace netflix.Repository
             services.AddScoped<IUserInterestRepository, UserInterestRepository>();
             services.AddScoped<IProgramRepository, ProgramRepository>();
             services.AddScoped<IProgramInterestRepository, ProgramInterestRepository>();
+            services.AddScoped<IUserProgramRepository, UserProgramRepository>();
 
             return services;
         }

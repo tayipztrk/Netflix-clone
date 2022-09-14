@@ -20,33 +20,52 @@ namespace netflix.Service.Concrete
         private readonly IUserInterestRepository _userInterestRepository;
         private readonly IProgramRepository _programRepository;
         private readonly IProgramInterestRepository _programInterestRepository;
+        private readonly IUserProgramRepository _userProgramRepository;
 
-        public UserService(IUserRepository userRepository, IInterestRepository interestRepository, IUserInterestRepository userInterestRepository, IProgramRepository programRepository, IProgramInterestRepository programInterestRepository)
-            {
+        public UserService(IUserRepository userRepository, IInterestRepository interestRepository, IUserInterestRepository userInterestRepository, IProgramRepository programRepository, IProgramInterestRepository programInterestRepository, IUserProgramRepository userProgramRepository)
+        {
             _userRepository = userRepository;
             _interestRepository = interestRepository;
             _userInterestRepository = userInterestRepository;
             _programRepository = programRepository;
             _programInterestRepository = programInterestRepository;
+            _userProgramRepository = userProgramRepository;
         }
 
-        public async Task<DataResult<User>> Login(UserLoginDto loginUser)
+        public async Task<DataResult<UserResponseDto>> Login(UserLoginDto loginUser)
         {
             try
             {
                 var user = await _userRepository.GetAsync(x => x.Email == loginUser.Email);
-                
-                if(user.Password == loginUser.Password)
+                var userInterests =  _userInterestRepository.GetAllWithThenInclude().Where(x => x.User.Id == user.Id)
+                    .Include(x => x.Interest).ToList();
+
+
+                var interests = new List<Interest>();
+                foreach (var userInterest in userInterests)
                 {
-                    return new DataResult<User>(user);
+                    var interest = await _interestRepository.GetAsync(x => x.Id == userInterest.Interest.Id);
+                    
+                    interests.Add(interest);
                 }
 
-                return new DataResult<User>(false, null, "Login işleminde hata","");
+                var userResponse = new UserResponseDto() {
+                    User = user,
+                    Interests = interests,
+                };
+                
+
+                if (user.Password == loginUser.Password)
+                {
+                    return new DataResult<UserResponseDto>(userResponse);
+                }
+
+                return new DataResult<UserResponseDto>(false, null, "Login işleminde hata", "");
 
             }
             catch (Exception e)
             {
-                return new DataResult<User>(false, null, "Login işleminde hata", e.Message);
+                return new DataResult<UserResponseDto>(false, null, "Login işleminde hata", e.Message);
             }
         }
 
@@ -78,14 +97,14 @@ namespace netflix.Service.Concrete
             }
         }
 
-        public async Task<DataResult<User>> Interest(UserInterestDto userInterestDtoList)
+        public async Task<DataResult<UserResponseDto>> Interest(UserInterestDto userInterestDtoList)
         {
             //throw new NotImplementedException();
             try
             {
                 var userModel = await _userRepository.GetAsync(x => x.Id == userInterestDtoList.userId);
 
-                //var userInterestList = new List<UserInterest>();
+                var interests = new List<Interest>();
                 foreach (var userInterestId in userInterestDtoList.InterestId)
                 {
                     var interestModel = await _interestRepository.GetAsync(x => x.Id == userInterestId);
@@ -96,6 +115,7 @@ namespace netflix.Service.Concrete
                         //Name = (InterestEnum)userInterestId,
                     };
 
+                    interests.Add(interestModel);
                     //userInterestList.Add(userInterest);
                     await _userInterestRepository.AddAsync(userInterest);
                 }
@@ -105,6 +125,40 @@ namespace netflix.Service.Concrete
 
                 await _userInterestRepository.SaveChanges();
 
+                var userResponse = new UserResponseDto()
+                {
+                    User = userModel,
+                    Interests = interests,
+                };
+
+                return new DataResult<UserResponseDto>(userResponse);
+            }
+            catch (Exception e)
+            {
+                return new DataResult<UserResponseDto>(false, null, "Register işleminde hata", e.Message);
+            }
+        }
+
+        public async Task<DataResult<User>> Watch(WatchAddDto watchDto)
+        {
+            //throw new NotImplementedException();
+            try
+            {
+                var userModel = await _userRepository.GetAsync(x => x.Id == watchDto.UserId);
+                var programModel = await _programRepository.GetAsync(x => x.Id == watchDto.ProgramId);
+
+
+
+                var userProgram = new UserProgram()
+                {
+                    User = userModel,
+                    Program = programModel,
+                    EpisodeNumber = 1,
+                };
+
+                await _userProgramRepository.AddAsync(userProgram);
+                await _userProgramRepository.SaveChanges();
+
                 return new DataResult<User>(userModel);
 
             }
@@ -113,7 +167,6 @@ namespace netflix.Service.Concrete
                 return new DataResult<User>(false, null, "Register işleminde hata", e.Message);
             }
         }
-
         public async Task<DataResult<IList<ProgramResponseDto>>> Program()
         {
             try
