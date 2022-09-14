@@ -38,8 +38,9 @@ body{
 
 .input{
   width: 250px;
-  background-color: transparent;
+  color: rgb(45, 45, 45);
   height: 30px;
+  
   outline: 1px solid white;
 }
 .input:focus{

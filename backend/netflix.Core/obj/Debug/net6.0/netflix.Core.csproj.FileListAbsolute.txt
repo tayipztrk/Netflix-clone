@@ -10,3 +10,15 @@ C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Core\obj\Debug\net6.0\
 C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Core\obj\Debug\net6.0\refint\netflix.Core.dll
 C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Core\obj\Debug\net6.0\netflix.Core.pdb
 C:\Users\kapla\source\repos\Netflix-clone\backend\netflix.Core\obj\Debug\net6.0\ref\netflix.Core.dll
+C:\Users\tayip\OneDrive\Masaüstü\YazLabTekDers\backend\netflix.Core\bin\Debug\net6.0\netflix.Core.deps.json
+C:\Users\tayip\OneDrive\Masaüstü\YazLabTekDers\backend\netflix.Core\bin\Debug\net6.0\netflix.Core.dll
+C:\Users\tayip\OneDrive\Masaüstü\YazLabTekDers\backend\netflix.Core\bin\Debug\net6.0\netflix.Core.pdb
+C:\Users\tayip\OneDrive\Masaüstü\YazLabTekDers\backend\netflix.Core\obj\Debug\net6.0\netflix.Core.csproj.AssemblyReference.cache
+C:\Users\tayip\OneDrive\Masaüstü\YazLabTekDers\backend\netflix.Core\obj\Debug\net6.0\netflix.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tayip\OneDrive\Masaüstü\YazLabTekDers\backend\netflix.Core\obj\Debug\net6.0\netflix.Core.AssemblyInfoInputs.cache
+C:\Users\tayip\OneDrive\Masaüstü\YazLabTekDers\backend\netflix.Core\obj\Debug\net6.0\netflix.Core.AssemblyInfo.cs
+C:\Users\tayip\OneDrive\Masaüstü\YazLabTekDers\backend\netflix.Core\obj\Debug\net6.0\netflix.Core.csproj.CoreCompileInputs.cache
+C:\Users\tayip\OneDrive\Masaüstü\YazLabTekDers\backend\netflix.Core\obj\Debug\net6.0\netflix.Core.dll
+C:\Users\tayip\OneDrive\Masaüstü\YazLabTekDers\backend\netflix.Core\obj\Debug\net6.0\refint\netflix.Core.dll
+C:\Users\tayip\OneDrive\Masaüstü\YazLabTekDers\backend\netflix.Core\obj\Debug\net6.0\netflix.Core.pdb
+C:\Users\tayip\OneDrive\Masaüstü\YazLabTekDers\backend\netflix.Core\obj\Debug\net6.0\ref\netflix.Core.dll

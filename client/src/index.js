@@ -9,6 +9,7 @@ const path=require('path')
 const url=require('url')
 
 let user;
+let programs;
 let win 
 let login
 let signup
@@ -33,6 +34,7 @@ ipcMain.on("userlogin", (event, data) => {
         .then((response) => response.json())
         .then((data) => {
           console.log("succes:",data);
+          user = data;
           win.loadURL(`file://${__dirname}/index.html`)
         })
         .catch((error) => {
@@ -53,6 +55,18 @@ ipcMain.on("usersignup", (event, data) => {
           user = data;
           win.loadURL(`file://${__dirname}/chooseContent.html`)
         })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+});
+
+ipcMain.on("getPrograms", (event) => {
+      fetch('https://localhost:7179/User/Program')
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        win.webContents.send('store-programs', data);
+      })
         .catch((error) => {
           console.error("Error:", error);
         });

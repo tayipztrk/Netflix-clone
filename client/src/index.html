@@ -9,8 +9,31 @@
     <title>Netflix</title>
   </head>
   <body>
-    <div>bu sayfa main sayfasıdır.</div>
+    
   </body>
 
   <script src="script.js"></script>
+  <script>  
+
+    const { ipcRenderer } = require("electron");
+    ipcRenderer.send("getPrograms");
+    ipcRenderer.on('store-programs', function (event,programs) {
+    console.log(programs);
+});
+
+
+    var submitBtn = document.querySelector("button");
+
+    submitBtn.addEventListener("click", async (event) => {
+      var emails = document.querySelector(".email").value;
+      var passwords = document.querySelector(".password").value;
+      // event.preventDefault();
+      const data = {
+        email: emails,
+        password: passwords,
+      };
+      
+      ipcRenderer.send("userlogin", JSON.stringify(data));
+    });
+  </script>
 </html>

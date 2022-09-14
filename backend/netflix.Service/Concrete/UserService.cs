@@ -22,12 +22,32 @@ namespace netflix.Service.Concrete
         private readonly IProgramInterestRepository _programInterestRepository;
 
         public UserService(IUserRepository userRepository, IInterestRepository interestRepository, IUserInterestRepository userInterestRepository, IProgramRepository programRepository, IProgramInterestRepository programInterestRepository)
-        {
+            {
             _userRepository = userRepository;
             _interestRepository = interestRepository;
             _userInterestRepository = userInterestRepository;
             _programRepository = programRepository;
             _programInterestRepository = programInterestRepository;
+        }
+
+        public async Task<DataResult<User>> Login(UserLoginDto loginUser)
+        {
+            try
+            {
+                var user = await _userRepository.GetAsync(x => x.Email == loginUser.Email);
+                
+                if(user.Password == loginUser.Password)
+                {
+                    return new DataResult<User>(user);
+                }
+
+                return new DataResult<User>(false, null, "Login işleminde hata","");
+
+            }
+            catch (Exception e)
+            {
+                return new DataResult<User>(false, null, "Login işleminde hata", e.Message);
+            }
         }
 
         public async Task<DataResult<User>> Register(UserRegisterDto createUser)

@@ -13,6 +13,7 @@ namespace netflix.Service.Abstract
     {
         //Task<DataResult<UserResponseDto>> Authenticate(string userName, string password);
         //Task<DataResult<User>> GetUserWithUserName(string userName);
+        Task<DataResult<User>> Login(UserLoginDto userLoginDto);
         Task<DataResult<User>> Register(UserRegisterDto userRegisterDto);
         Task<DataResult<User>> Interest(UserInterestDto userInterestDto);
         Task<DataResult<IList<ProgramResponseDto>>> Program();

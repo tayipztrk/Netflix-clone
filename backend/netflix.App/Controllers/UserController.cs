@@ -17,7 +17,14 @@ namespace netflix.App.Controllers
             _userService = userService;
         }
 
-        [HttpPost]
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(UserLoginDto userLoginDto)
+        {
+            var result = await _userService.Login(userLoginDto);
+            return !result.Succeeded ? BadRequest(result.ErrorDefination) : Ok(result.Data);
+        }
+
+        [HttpPost("Register")]
         public async Task<IActionResult> Register(UserRegisterDto userRegisterDto)
         {
             var result = await _userService.Register(userRegisterDto);
