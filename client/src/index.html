@@ -9,31 +9,62 @@
     <title>Netflix</title>
   </head>
   <body>
-    
+    <div class="navbar">
+      <!-- <i class="fa fa-arrow-right"></i> -->
+      <div class="logo">
+        <img src="../img/logo.png" alt="" />
+      </div>
+      <div class="search">
+        <input placeholder="Film Ara" class="search-input" type="text" />
+        <button class="search-btn">Ara</button>
+      </div>
+    </div>
+
+    <div class="programs-container">
+      <h1 class="programs-title">Programs</h1>
+      <div class="programs-wrapper"></div>
+    </div>
   </body>
 
   <script src="script.js"></script>
-  <script>  
-
+  <script>
     const { ipcRenderer } = require("electron");
+
+    let programsList;
+
     ipcRenderer.send("getPrograms");
-    ipcRenderer.on('store-programs', function (event,programs) {
-    console.log(programs);
-});
+    ipcRenderer.on("store-programs", function (event, programs) {
+      programsList = programs;
+      var wrapper = document.getElementsByClassName("programs-wrapper");
+      console.log(programsList);
+      for (let index = 0; index < programsList.length; index++) {
+        wrapper[0].innerHTML += `<div class="program ${index + 1}"> <div class="programTitle">${programsList[index].name}</div>  <div class="programTitle">${programsList[index].type=== 1 ? "Film" : "Dizi"}</div> </div> `;
+      }
 
+      var searchBtn= document.querySelector("button");
 
-    var submitBtn = document.querySelector("button");
+      searchBtn.addEventListener("click", async (event) => {
+        var search = document.querySelector(".search-input").value;
+        wrapper[0].innerHTML = "";
+        for (let index = 0; index < programsList.length; index++) {
+          if(programsList[index].name.toLowerCase().includes(search.toLowerCase())){
+            wrapper[0].innerHTML += `<div class="program ${index + 1}"> <div class="programTitle">${programsList[index].name}</div> <div class="programTitle">${programsList[index].type=== 1 ? "Film" : "Dizi"}</div> </div>`;
+          }
+          if(programsList[index].interests.some(i => i.toLowerCase().includes(search.toLowerCase()))){
+            wrapper[0].innerHTML += `<div class="program ${index + 1}"> <div class="programTitle">${programsList[index].name}</div> <div class="programTitle">${programsList[index].type=== 1 ? "Film" : "Dizi"}</div> </div>`;
+          }
+      }
+      });
 
-    submitBtn.addEventListener("click", async (event) => {
-      var emails = document.querySelector(".email").value;
-      var passwords = document.querySelector(".password").value;
-      // event.preventDefault();
-      const data = {
-        email: emails,
-        password: passwords,
-      };
-      
-      ipcRenderer.send("userlogin", JSON.stringify(data));
+      var filmClick= document.getElementsByClassName("program");
+      for (let index = 0; index < filmClick.length; index++) {
+          
+        filmClick[index].addEventListener("click", async (event) => {
+           alert(`${filmClick[index].querySelector('.programTitle').innerHTML} izleniyor`);
+           console.log(filmClick[index].querySelector('.programTitle').innerHTML);
+           ipcRenderer.send("watch", filmClick[index].classList[1] );
+        });
+      }
     });
   </script>
 </html>

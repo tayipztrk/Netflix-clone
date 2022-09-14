@@ -75,7 +75,7 @@ ipcMain.on("getPrograms", (event) => {
 ipcMain.on("userInterest", (event, data) => {
       dataLast = {
         interestId: data,
-        userId: user.id
+        userId: user.user.id
       }
       fetch('https://localhost:7179/User/Interest', {
         method: "POST",
@@ -90,6 +90,26 @@ ipcMain.on("userInterest", (event, data) => {
         .catch((error) => {
           console.error("Error:", error);
         });
+});
+
+ipcMain.on("watch", (event, data) => {
+  dataList = {
+    programId: data,
+    userId: user.user.id
+  }
+  fetch('https://localhost:7179/User/Watch', {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { 'Content-Type': 'application/json' },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("succes:",data);
+      win.loadURL(`file://${__dirname}/index.html`)
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 });
 
 ipcMain.on("authenticated", async (event) => {
