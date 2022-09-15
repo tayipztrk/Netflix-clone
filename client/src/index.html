@@ -21,6 +21,8 @@
     </div>
 
     <div class="programs-container">
+      <h1 class="programs-title">User Interests</h1>
+      <div class="programs-wrapper-user"></div>
       <h1 class="programs-title">Programs</h1>
       <div class="programs-wrapper"></div>
     </div>
@@ -34,7 +36,27 @@
 
     ipcRenderer.send("getPrograms");
     ipcRenderer.on("store-programs", function (event, programs) {
-      programsList = programs;
+      programsList = programs.programs;
+      userInterests = programs.userInterests;
+
+      var wrapperUser = document.getElementsByClassName("programs-wrapper-user");
+      var interest1 = 0;
+      var interest2 = 0;
+      var interest3 = 0;
+      for (let index = 0; index < programsList.length; index++) {
+
+        if(programsList[index].interests.some(x => x == userInterests[0].name && interest1 < 2)){
+          interest1++;
+          wrapperUser[0].innerHTML += `<div class="program ${index + 1}"> <div class="programTitle">${programsList[index].name}</div>  <div class="programTitle">${programsList[index].type=== 1 ? "Film" : "Dizi"}</div> </div> `;
+        }else if(programsList[index].interests.some(x => x == userInterests[1].name && interest2 < 2)){
+          interest2++;
+          wrapperUser[0].innerHTML += `<div class="program ${index + 1}"> <div class="programTitle">${programsList[index].name}</div>  <div class="programTitle">${programsList[index].type=== 1 ? "Film" : "Dizi"}</div> </div> `;
+        }else if(programsList[index].interests.some(x => x == userInterests[2].name && interest3 < 2)){
+          interest3++;
+          wrapperUser[0].innerHTML += `<div class="program ${index + 1}"> <div class="programTitle">${programsList[index].name}</div>  <div class="programTitle">${programsList[index].type=== 1 ? "Film" : "Dizi"}</div> </div> `;
+        }
+      }
+
       var wrapper = document.getElementsByClassName("programs-wrapper");
       console.log(programsList);
       for (let index = 0; index < programsList.length; index++) {
@@ -60,9 +82,9 @@
       for (let index = 0; index < filmClick.length; index++) {
           
         filmClick[index].addEventListener("click", async (event) => {
-           alert(`${filmClick[index].querySelector('.programTitle').innerHTML} izleniyor`);
-           console.log(filmClick[index].querySelector('.programTitle').innerHTML);
-           ipcRenderer.send("watch", filmClick[index].classList[1] );
+          console.log(filmClick[index].querySelector('.programTitle').innerHTML);
+          ipcRenderer.send("watch", filmClick[index].classList[1] );
+          alert(`${filmClick[index].querySelector('.programTitle').innerHTML} izleniyor`);
         });
       }
     });
